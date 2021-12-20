@@ -1,0 +1,1 @@
+const CANVAS = document.querySelector('#playerground__snake');
