@@ -75,8 +75,8 @@ function startGame() {
         }
     }
 
-    makeBackground("#a5c0db", BOX);
-    makeSnake("blue", BOX);
+    makeBackground("aliceblue", BOX);
+    makeSnake("black", BOX);
     makeSnakeFood("orange", BOX);
 
     let snakeX = snake[0].x;
@@ -93,8 +93,6 @@ function startGame() {
         snakeFood.x = Math.floor(Math.random() * 15 + 1) * BOX;
         snakeFood.y = Math.floor(Math.random() * 15 + 1) * BOX;
     }
-
-    snake.pop();
 
     let newSnakeHead = {
         x: snakeX,

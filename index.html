@@ -13,8 +13,17 @@
     <link rel="stylesheet" href="./assets/css/theme.css">
 </head>
 <body class="d-flex align-items-center justify-content-center flex-column w-100 h-100">
-    <h1>Jogo da Cobrinha</h1>
-    <canvas id="playerground__snake" class="border" width="512" height="512"></canvas>
+    <h1 class="my-4">Jogo da Cobrinha &#x1F40D;</h1>
+
+    <div class="controls">
+        <div class="controls__buttons py-2 d-flex justify-content-around">
+            <button id="button__start" class="btn btn-primary px-5">Iniciar</button>
+            <button id="button__pause" class="btn btn-dark px-5">Pausar</button>
+            <button id="button__reset" class="btn btn-secondary px-5">Reiniciar</button>
+        </div>
+    </div>
+    
+    <canvas id="playerground__snake" class="border border-dark rounded" width="512" height="512"></canvas>
 
     <!-- JS Custom -->
     <script src="./assets/js/main.js"></script>
