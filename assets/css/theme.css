@@ -1,4 +1,5 @@
-.controls__buttons {
+.controls__buttons,
+.gameinfo {
     width: 512px;
 }
 

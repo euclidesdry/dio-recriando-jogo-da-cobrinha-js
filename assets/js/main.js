@@ -1,4 +1,5 @@
 const PLAYERGROUND = document.querySelector(".playerground");
+const GAMEINFO = document.querySelector(".gameinfo");
 const CANVAS = document.querySelector("#playerground__snake");
 
 const CONTROLS = {
@@ -8,6 +9,10 @@ const CONTROLS = {
 }
 
 const CONTEXT = CANVAS.getContext("2d");
+const INFOS = {
+    gettedFoods: 0,
+    score: 0,
+}
 let BOX = 32;
 let snake = [];
 let game = '';
@@ -28,7 +33,7 @@ let snakeFood = {
 
 CONTROLS.start.addEventListener("click", function () {handleStartGame()});
 CONTROLS.pause.addEventListener("click", () => alert("Game Paused!"));
-CONTROLS.reset.addEventListener("click", () => alert("Game Reseted!"));
+CONTROLS.reset.addEventListener("click", () => window.location.reload());
 
 // Control Functions
 const handleStartGame = () => {
@@ -56,9 +61,11 @@ function makeBackground(color = "lightgreen", squareSize) {
  *
  * @description Create the snake with the color and square size and passed cordinates;
  */
-function makeSnake(color = "green", squareSize) {
+function makeSnake(color = "green", squareSize, headColor = "blue",) {
     for (let i = 0; i < snake.length; i++) {
-        CONTEXT.fillStyle = color;
+        if (i === 0) CONTEXT.fillStyle = headColor;
+        else CONTEXT.fillStyle = color;
+
         CONTEXT.fillRect(snake[i].x, snake[i].y, squareSize, squareSize);
     }
 }
@@ -116,6 +123,12 @@ function startGame() {
     } else {
         snakeFood.x = Math.floor(Math.random() * 15 + 1) * BOX;
         snakeFood.y = Math.floor(Math.random() * 15 + 1) * BOX;
+
+        INFOS.gettedFoods += 1;
+        INFOS.score += + 100;
+
+        GAMEINFO.querySelector('#gameinfo__food .info').innerHTML = INFOS.gettedFoods;
+        GAMEINFO.querySelector('#gameinfo__score .info').innerHTML = INFOS.score;
     }
 
     let newSnakeHead = {
