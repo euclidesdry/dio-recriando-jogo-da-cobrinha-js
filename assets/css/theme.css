@@ -1,3 +1,23 @@
 .controls__buttons {
     width: 512px;
 }
+
+.playerground,
+#playerground__snake {
+    width: 512px;
+    height: 512px;
+}
+
+.playerground:not(.playerground--started):before {
+    content: 'Inicie um novo Jogo';
+    position: absolute;
+    display: block;
+    text-align: center;
+    font-size: 2em;
+
+    width: 100%;
+    height: 100%;
+
+    top: calc(50% - 1em);
+    left: 0px;
+}

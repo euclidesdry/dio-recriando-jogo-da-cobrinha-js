@@ -12,7 +12,7 @@
     <!-- CSS Custom -->
     <link rel="stylesheet" href="./assets/css/theme.css">
 </head>
-<body class="d-flex align-items-center justify-content-center flex-column w-100 h-100">
+<body class="d-flex align-items-center justify-content-center flex-column w-100 h-100 overflow-hidden">
     <h1 class="my-4">Jogo da Cobrinha &#x1F40D;</h1>
 
     <div class="controls">
@@ -22,8 +22,10 @@
             <button id="button__reset" class="btn btn-secondary px-5">Reiniciar</button>
         </div>
     </div>
-    
-    <canvas id="playerground__snake" class="border border-dark rounded" width="512" height="512"></canvas>
+
+    <div class="playerground position-relative">
+        <canvas id="playerground__snake" class="border border-dark rounded" width="512" height="512"></canvas>
+    </div>
 
     <!-- JS Custom -->
     <script src="./assets/js/main.js"></script>

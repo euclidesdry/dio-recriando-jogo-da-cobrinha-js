@@ -1,7 +1,16 @@
+const PLAYERGROUND = document.querySelector(".playerground");
 const CANVAS = document.querySelector("#playerground__snake");
+
+const CONTROLS = {
+    start: document.querySelector("#button__start"),
+    pause: document.querySelector("#button__pause"),
+    reset: document.querySelector("#button__reset"),
+}
+
 const CONTEXT = CANVAS.getContext("2d");
 let BOX = 32;
 let snake = [];
+let game = '';
 
 snake[0] = {
     x: 8 * BOX,
@@ -14,6 +23,21 @@ let snakeFood = {
     x: Math.floor(Math.random() * 15 + 1) * BOX,
     y: Math.floor(Math.random() * 15 + 1) * BOX,
 }
+
+// Event Listeners
+
+CONTROLS.start.addEventListener("click", function () {handleStartGame()});
+CONTROLS.pause.addEventListener("click", () => alert("Game Paused!"));
+CONTROLS.reset.addEventListener("click", () => alert("Game Reseted!"));
+
+// Control Functions
+const handleStartGame = () => {
+    game = setInterval(startGame, 200);
+};
+
+document.addEventListener("keydown", updateDirection);
+
+// Functions Game Functions
 
 /**
  * @param {string} color Backgorund color;
@@ -44,8 +68,6 @@ function makeSnakeFood (color = "orange", squareSize) {
     CONTEXT.fillRect(snakeFood.x, snakeFood.y, squareSize, squareSize)
 }
 
-document.addEventListener("keydown", updateDirection);
-
 /**
  *
  * @param {KeyboardEvent} event get the KeyboardEvent from addEventListever event parameter;
@@ -63,6 +85,8 @@ function updateDirection(event) {
  * @description starts the game.
  */
 function startGame() {
+    PLAYERGROUND.classList.add("playerground--started");
+
     if (snake[0].x > 15 * BOX && DIRECTION === "right") snake[0].x = 0;
     if (snake[0].x < 0 && DIRECTION === "left") snake[0].x = 16 * BOX;
     if (snake[0].y > 15 * BOX && DIRECTION === "down") snake[0].y = 0;
@@ -100,6 +124,4 @@ function startGame() {
     };
 
     snake.unshift(newSnakeHead);
-}
-
-let game = setInterval(startGame, 200);
+};
