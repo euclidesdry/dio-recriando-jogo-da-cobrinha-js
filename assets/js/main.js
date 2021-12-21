@@ -8,6 +8,8 @@ snake[0] = {
     y: 8 * BOX
 };
 
+let DIRECTION = "right";
+
 /**
  * @param {string} color Backgorund color;
  * @param {number} squareSize Size of each the square;
@@ -25,12 +27,33 @@ function makeBackground(color = "lightgreen", squareSize) {
  *
  * @description Create the snake with the color and square size and passed cordinates;
  */
-function makeSnake(color = "lightgreen", squareSize) {
+function makeSnake(color = "green", squareSize) {
     for(let i = 0; i < snake.length; i++) {
         CONTEXT.fillStyle = color;
         CONTEXT.fillRect(snake[i].x, snake[i].y, squareSize, squareSize);
     }
 }
 
-makeBackground("lightgreen", BOX);
-makeSnake("green", BOX);
+function startGame() {
+    makeBackground("lightgreen", BOX);
+    makeSnake("green", BOX);
+
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+
+    if(DIRECTION === "right") snakeX += BOX;
+    if(DIRECTION === "left") snakeX -= BOX;
+    if(DIRECTION === "up") snakeY -= BOX;
+    if(DIRECTION === "down") snakeY += BOX;
+
+    snake.pop();
+    
+    let newSnakeHead = {
+        x: snakeX,
+        y: snakeY
+    };
+
+    snake.unshift(newSnakeHead);
+}
+
+let game = setInterval(startGame, 100);
